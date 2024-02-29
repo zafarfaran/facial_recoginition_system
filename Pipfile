@@ -4,6 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+face-recognition = "*"
+flask = "*"
+cvzone = "*"
+dlib = "*"
+cmake = "*"
 
 [dev-packages]
 
