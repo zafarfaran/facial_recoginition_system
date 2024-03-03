@@ -1,47 +1,55 @@
+from sklearn.neighbors import KNeighborsClassifier
 import cv2
+import pickle
+import numpy as np
+import os
+import csv
 import time
-import face_recognition
-# Initialize the video capture
-cap = cv2.VideoCapture(0)
-cap.set(3, 640)  # Width
-cap.set(4, 720)  # Height
+from datetime import datetime
 
-if not cap.isOpened():
-    print("Error loading the camera")
-    exit()
 
-# For FPS calculation
-fps_start_time = time.time()
-fps = 0
-total_frames = 0
+from win32com.client import Dispatch
+
+def speak(str1):
+    speak=Dispatch(("SAPI.SpVoice"))
+    speak.Speak(str1)
+
+video=cv2.VideoCapture(0)
+facedetect=cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+
+with open('D:/Projects/facial_recoginition_system/encodings/names.pkl', 'rb') as w:
+    LABELS=pickle.load(w)
+with open('D:/Projects/facial_recoginition_system/encodings/faces_data.pkl', 'rb') as f:
+    FACES=pickle.load(f)
+
+print('Shape of Faces matrix --> ', FACES.shape)
+
+knn=KNeighborsClassifier(n_neighbors=5)
+print("training")
+knn.fit(FACES, LABELS)
+print("training done")
+
+
+
+
+# COL_NAMES = ['NAME', 'TIME']
 
 while True:
-    ret, img = cap.read()
-    if not ret:
-        print("Failed to capture image")
+    # print("working")
+    ret,frame=video.read()
+    gray=cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    faces=facedetect.detectMultiScale(gray, 1.3 ,5)
+    for (x,y,w,h) in faces:
+        crop_img=frame[y:y+h, x:x+w, :]
+        resized_img=cv2.resize(crop_img, (50,50)).flatten().reshape(1,-1)
+        output=knn.predict(resized_img)
+
+        cv2.putText(frame, str(output[0]), (x,y-15), cv2.FONT_HERSHEY_COMPLEX, 1, (255,255,255), 1)
+        cv2.rectangle(frame, (x,y), (x+w, y+h), (50,50,255), 1)
+
+    cv2.imshow("Frame",frame)
+    k=cv2.waitKey(1)
+    if k==ord('q'):
         break
-
-    total_frames += 1
-
-    # Your image processing code here
-    faceCurFrame = face_recognition.face_locations(img)
-
-    # Draw rectangles around detected faces
-    for top, right, bottom, left in faceCurFrame:
-        cv2.rectangle(img, (left, top), (right, bottom), (0, 255, 0), 2)
-    # Calculate FPS
-    time_elapsed = time.time() - fps_start_time
-    if time_elapsed >= 1.0:  # Every second
-        fps = total_frames / time_elapsed
-        total_frames = 0  # Reset for the next average
-        fps_start_time = time.time()
-
-    # Display FPS on the frame
-    cv2.putText(img, f"FPS: {fps:.2f}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-
-    cv2.imshow("Image", img)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
-
-# cap.release()
-# cv2.destroyAllWindows()
+video.release()
+cv2.destroyAllWindows()

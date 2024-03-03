@@ -9,6 +9,7 @@ flask = "*"
 cvzone = "*"
 dlib = "*"
 cmake = "*"
+scikit-learn = "*"
 
 [dev-packages]
 
