@@ -10,6 +10,12 @@ cvzone = "*"
 dlib = "*"
 cmake = "*"
 scikit-learn = "*"
+flask-mysqldb = "*"
+pyyaml = "*"
+bcrypt = "*"
+flask-sqlalchemy = "*"
+pymysql = "*"
+sqlalchemy = "*"
 
 [dev-packages]
 

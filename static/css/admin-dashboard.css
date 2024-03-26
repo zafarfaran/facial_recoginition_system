@@ -1,0 +1,194 @@
+* {
+    box-sizing: border-box;
+  }
+  html, body {
+    height: 100%;
+    overflow-x: hidden;
+  }
+  body {
+    font-size: 1.2em;
+    background-color: #0d1d2b;
+  }
+  .btn {
+    display: inline-block;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 3px;
+    white-space: nowrap;
+    cursor: default;
+    z-index: 0;
+    line-height: 2.6em;
+    font-size: 1rem;
+  }
+  .btn .title {
+    vertical-align: -webkit-baseline-middle;
+  }
+  .btn-default {
+    color: #99a9b8;
+    text-shadow: none;
+    border: 1px solid #070e14;
+  }
+  .atom-panel {
+    display: flex;
+    background-color: #132637;
+    font-weight: normal;
+    color: #99a9b8;
+    position: relative;
+  }
+  .atom-panel--dark {
+    background-color: #0d1d2b;
+  }
+  .atom-panel--light {
+    background-color: #172E42;
+  }
+  .atom-panel--left {
+    border-right: 1px solid #070e14;
+    border-bottom: 1px solid #070e14;
+    height: 100%;
+  }
+  .atom-toolbar {
+    color: #99a9b8;
+    display: flex;
+    justify-content: flex-start;
+    background-color: #132637;
+    border: none;
+    flex-direction: column;
+    overflow-x: auto;
+    line-height: 48px;
+    width: 54px;
+    transition: width 0.3s cubic-bezier(0, 1.15, 1, 0.93);
+  }
+  .atom-toolbar::-webkit-scrollbar-track
+  {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: unset;
+  }
+  .atom-toolbar::-webkit-scrollbar{
+    width: 6px;
+    background-color: unset;
+  }
+  .atom-toolbar::-webkit-scrollbar-thumb{
+    background-color: #0a1b29;
+    border-radius: 5px;
+    opacity: .3;
+  }
+  .atom-toolbar.atom-toolbar-vertical {
+    height: 100%;
+  }
+  .atom-toolbar.expanded {
+    width: 240px;
+  }
+  .atom-toolbar .btn {
+    flex: 0 0 auto;
+    margin: 2px;
+    padding: 0;
+    background-color: #132637;
+    background-image: none;
+    border-color: #132637;
+    height: 50px;
+    min-width: 50px;
+  }
+  .atom-toolbar .btn:hover {
+    color: #d5dce2;
+    background-image: linear-gradient(#254868, #224360);
+    border: 1px solid #070e14;
+  }
+  .atom-toolbar .btn:focus {
+    color: #99a9b8;
+    text-decoration: none;
+    background-color: #163048;
+    box-shadow: none;
+  }
+  .atom-toolbar .btn:hover:focus {
+    color: #99a9b8;
+    background-color: #163048;
+  }
+  .atom-toolbar.atom-toolbar-vertical .atom-toolbar-spacer {
+    margin: .5em 5px;
+    border: 0 none;
+    border-bottom: 1px solid #1f3e59;
+    border-top: 1px solid #070e14;
+    -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7), #000000, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+  }
+  .atom-toolbar.expanded .btn {
+    text-align: left;
+    padding: 0 13px;
+  }
+  .atom-toolbar .btn .title {
+    display: none;
+  }
+  .atom-toolbar.expanded .btn .title {
+    display: inline-block;
+  }
+  .atom-toolbar .btn .octicon {
+    font-size: 24px;
+    width: 26px;
+  }
+  .atom-toolbar.expanded .btn .octicon {
+    margin-right: 5px;
+  }
+  .atom-toolbar .atom-toolbar-toggle-button.left {
+    margin-left: -2px;
+    top: 46%;
+  }
+  .atom-toolbar.expanded .atom-toolbar-toggle-button.left {
+    margin-left: -2px;
+    top: 46%;
+  }
+  .atom-toolbar-toggle-button {
+    left: 56px;
+    transition: left 0.3s cubic-bezier(0, 1.15, 1, 0.93);
+  }
+  .atom-toolbar-toggle-button.expanded {
+    left: 242px;
+  }
+  .atom-toolbar-toggle-button.left, .atom-toolbar-toggle-button.right {
+    width: 25px;
+  }
+  .atom-toolbar .atom-toolbar-toggle-button .atom-toolbar-toggle-button-inner span:before {
+    content: '\f078';
+  }
+  .atom-toolbar.expanded .atom-toolbar-toggle-button .atom-toolbar-toggle-button-inner span:before {
+    content: '\f0a4';
+  }
+  .atom-toolbar-toggle-button {
+    position: absolute;
+    overflow: hidden;
+    z-index: 11;
+    width: 50px;
+    height: 50px;
+  }
+  .atom-toolbar-toggle-button:not(.atom-toolbar-toggle-button-visible) .atom-toolbar-toggle-button-inner.left {
+    transform: translateX(-50%);
+  }
+  .atom-toolbar-toggle-button:not(.atom-toolbar-toggle-button-visible) .atom-toolbar-toggle-button-inner {
+    transition: transform 0.2s ease-out 0.1s;
+  }
+  .atom-toolbar-toggle-button .atom-toolbar-toggle-button-inner.left {
+    right: 0;
+  }
+  .atom-toolbar-toggle-button .atom-toolbar-toggle-button-inner {
+    background-color: #132637;
+    border: 1px solid #070e14;
+    transition: transform 0.2s ease-out 0s;
+  }
+  .atom-toolbar-toggle-button .atom-toolbar-toggle-button-inner {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    position: absolute;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    will-change: transform;
+  }
+  .atom-toolbar-toggle-button .atom-toolbar-toggle-button-inner.left .octicon {
+    transform: translateX(8px);
+  }
+  .atom-toolbar-toggle-button .octicon {
+    transition: opacity 0.1s ease-in 0.1s;
+    opacity: 1;
+  }

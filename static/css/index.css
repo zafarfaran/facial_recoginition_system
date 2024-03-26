@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+
+*{
+    transition: all 0.5s ease-in-out;
+}
+body {
+    background-color: #132637;
+    font-family: "Montserrat", sans-serif;
+
+}
+.main-div-body{
+    display: flex;
+}
+.logo_div {
+    margin-top: 15vmin;
+    font-family: "League Spartan", sans-serif;
+font-size: 10vmin;
+ color: white;
+ display: flex;
+ flex-direction: column;   
+ align-items: center;
+ align-content: center;
+ font-weight: bold;
+ letter-spacing: -4px;
+}
+.logo_div span{
+    color:#1d6fbc ;
+    font-size: 15vmin;
+
+}
+.button-div-main {
+    padding-top: 0%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    align-content: center;
+    
+}
+.home_button {
+    width: 100%;
+    padding: 2vmin 2vmin;
+    margin-top: 1vmin;
+    border: none;
+    outline: none;
+    border-radius: 0.4vmin;
+    background-color: #1d6fbc;
+    color: #f9f9f9;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+}
+.home_button:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    background-color: #1d6fbc;
+    -webkit-box-shadow: 2px 10px 156px -22px rgba(0,187,97,0.95);
+    -moz-box-shadow: 2px 10px 156px -22px rgba(0,187,97,0.95);
+    box-shadow: 2px 10px 156px -22px rgba(0,187,97,0.95);
+}
+
+.text_animation_block{
+   
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
+    margin-top: 4vmin;
+    font-size: 3vmin;
+    font-weight: bold;
+   
+}
+#text-display{
+    color:#2b2b2b;
+    background-color: rgb(250, 249, 249);
+    padding: 2vmin 2vmin;
+    border-radius: 1vmin;
+}

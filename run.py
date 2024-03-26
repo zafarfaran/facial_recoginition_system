@@ -1,4 +1,5 @@
-from app import app
+import bcrypt
+password = b"123"
+hashed = bcrypt.hashpw(password, bcrypt.gensalt())
 
-if __name__ == "__main__":
-    app.run(debug=True)
+print(hashed)

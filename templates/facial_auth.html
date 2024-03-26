@@ -1,0 +1,93 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<style>
+   
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facial Authenctication</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/facial_auth.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+
+
+</head>
+
+<body>
+    <div class="facial_auth_heading">
+        <strong>Hey, you are on camera!</strong>
+    </div>
+    <br></br>
+ 
+    <div class="facial_auth-video">
+    
+        <video id="video" class="video-player" width="600" height="400" autoplay></video>
+        <div id="timer" class="timer" style="display: none;">5</div>
+        <div id="verificationMessage" class="verification-message" style="display: none;"></div>
+    </div>
+
+    <!-- <div class="authenticat_button_div">
+        <button id="snap" class="authenticat_button">Authenticate</button>
+        <button  id="stopAndSend" class="authenticat_button" style="display: none;">Go to Dasboard</button>
+    </div> -->
+    <script src="{{ url_for('static', filename='js/facial_auth.js') }}"></script>
+    
+    <script>document.addEventListener('DOMContentLoaded', function() {
+        const video = document.getElementById('video');
+        let mediaRecorder;
+        let recordedBlobs = [];
+    
+        // Function to handle data availability
+        function handleDataAvailable(event) {
+            if (event.data && event.data.size > 0) {
+                recordedBlobs.push(event.data);
+            }
+        }
+    
+        // Function to initialize recording
+        function startRecording(stream) {
+            let options = { mimeType: 'video/webm; codecs=vp9' };
+            recordedBlobs = []; // Reset previously recorded blobs
+            mediaRecorder = new MediaRecorder(stream, options);
+            mediaRecorder.ondataavailable = handleDataAvailable;
+            mediaRecorder.start(1000); // Start recording, create a new Blob every 1000ms (1 second)
+        }
+    
+        // Function to send video to server
+        async function sendVideoToServer() {
+            const videoBlob = new Blob(recordedBlobs, { type: 'video/webm' });
+            const formData = new FormData();
+            formData.append('video', videoBlob, 'video.webm');
+    
+            try {
+                const response = await fetch('/api/process-video', {
+                    method: 'POST',
+                    body: formData,
+                });
+                const data = await response.json();
+                console.log(data);
+            } catch (error) {
+                console.error('Error during fetch:', error);
+            }
+        }
+    
+        // Obtain video stream and start recording
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+                startRecording(stream);
+            })
+            .catch(console.error);
+    
+        // Listen for beforeunload event to send the video when the user leaves the page
+        window.addEventListener('beforeunload', (event) => {
+            mediaRecorder.stop(); // Ensure recording is stopped before sending
+            sendVideoToServer();
+        });
+    });</script>
+
+</body>
+</html>

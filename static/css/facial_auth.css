@@ -1,0 +1,158 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.module-container {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px; /* Match the width of the video player */
+}
+
+.module-container select {
+    width: 100%; /* Full width within container */
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #333; /* Dark background */
+    color: #fff; /* Light text for visibility */
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    -webkit-appearance: none; /* Remove default styling on WebKit browsers */
+    -moz-appearance: none; /* Remove default styling on Mozilla browsers */
+    appearance: none; /* Remove default styling */
+    position: relative;
+}
+
+.facial_auth_heading {
+    font-size: 24px;
+    color: #34495e;
+    margin-bottom: 15px;
+}
+
+.module-container {
+    font-size: 24px;
+    color: #FFFFFF;
+    margin-bottom: 15px;
+}
+
+.video-player {
+    transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    margin-top: -40px;
+}
+
+.authenticat_button_div {
+    margin-top: 20px;
+}
+
+.authenticat_button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.authenticat_button:hover {
+    background-color: #2980b9;
+}
+
+.verification-message {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #3498db;
+    color: #fff;
+    font-weight: bold;
+}
+
+
+.facial_auth_heading{
+    color: white;
+    font-size: 4vmin;
+    font-weight: bold;
+    background-color:  #1d1c1c;
+    padding: 1vmin 1vmin;
+    border-radius: 1vmin;
+    width: fit-content;
+    margin: auto;
+    margin-top: 5vmin;
+
+}
+.facial_auth-video{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    justify-content: center;
+    margin-top: 10vmin;
+}
+.video-player {
+  
+    border: 1px solid #00bb61;
+    /* Black border */
+    -webkit-box-shadow: 0px 0px 130px -24px rgba(0,187,97,1);
+    -moz-box-shadow: 0px 0px 130px -24px rgba(0,187,97,1);
+    box-shadow: 0px 0px 130px -24px rgba(0,187,97,1);
+}
+
+.authenticat_button_div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    margin-top: 5vmin;
+
+}
+.authenticat_button{
+    width: 100%;
+    padding: 2vmin 2vmin;
+    margin-top: 1vmin;
+    border: none;
+    outline: none;
+    border-radius: 0.4vmin;
+    background-color: #00bb61;
+    color: #2b2b2b;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+}
+.authenticat_button:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+    background-color: #04d671;
+    -webkit-box-shadow: 2px 10px 156px -22px rgba(0,187,97,0.95);
+    -moz-box-shadow: 2px 10px 156px -22px rgba(0,187,97,0.95);
+    box-shadow: 2px 10px 156px -22px rgba(0,187,97,0.95);
+
+}
+
+.timer{
+    font-family:"Montserrat", sans-serif ;
+    color: white;
+    margin-top: 2vmin;
+    font-size: 3vmin;
+}
+.verification-message{
+    margin-top: 5vmin;
+    background-color: #00bb61;
+    color: white;
+    font-size: 3vmin;
+    padding: 2vmin 2vmin;
+    border-radius: 1vmin;
+
+}
