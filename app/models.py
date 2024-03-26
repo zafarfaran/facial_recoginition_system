@@ -1,11 +1,5 @@
-from flask_sqlalchemy import SQLAlchemy
-from flask import Flask
+from .extensions import db
 from datetime import datetime
-
-
-
-db = SQLAlchemy()
-
 
 class User(db.Model):
     __tablename__ = 'user'  # Explicitly set the table name if it's not the default
@@ -54,6 +48,4 @@ class Subject(db.Model):
 
     def __repr__(self):
         return f'<Subject {self.name}>'
-        
-# with app.app_context():
-#     db.create_all()
+   

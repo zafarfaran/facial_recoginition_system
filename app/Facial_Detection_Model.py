@@ -6,7 +6,7 @@ import cvzone
 from concurrent.futures import ThreadPoolExecutor
 import dlib
 import time
-
+from db_func import get_student_details
 # Print the version of dlib being used
 print("Dlib version:", dlib.__version__)
 
@@ -32,7 +32,7 @@ def process_face(faceLoc, encodeFace):
         y1, x2, y2, x1 = y1 * 4, x2 * 4, y2 * 4, x1 * 4
         bbox = x1, y1, x2 - x1, y2 - y1
         text = f"Face Detected = id:{studentIds[match_index]}"
-        return True, bbox, text
+        return studentIds[match_index],True, bbox, text
     return False, None, None
 
 # Frame processing settings
@@ -53,14 +53,16 @@ while True:
         with ThreadPoolExecutor() as executor:
             results = executor.map(process_face, faceCurFrame, encodeCurrFrame)
 
-        for detected, bbox, text in results:
+        for id,detected, bbox, text in results:
             if detected and bbox is not None:
+                student_details = get_student_details(id)
                 img = cvzone.cornerRect(img, bbox, rt=1)
                 cv2.putText(img, text, (bbox[0], bbox[1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
                 
                 # Extract and save the detected face
                 face_img = img[bbox[1]:bbox[1]+bbox[3], bbox[0]:bbox[0]+bbox[2]]
                 timestamp = time.strftime("%Y%m%d-%H%M%S")
+                timestamp = f"{id}_{timestamp}"
                 filename = f"D:/Projects/facial_recoginition_system/detected_faces/{timestamp}.jpg"
                 cv2.imwrite(filename, face_img)
                 print(f"Saved detected face to {filename}")
