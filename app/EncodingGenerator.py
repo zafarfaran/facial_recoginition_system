@@ -7,7 +7,7 @@ import pickle
 def generatePath():
     imgModeList = []
     studentIds = []
-    folderPath = 'D:/Projects/facial_recoginition_system/app/images'
+    folderPath = 'D:/Projects/facial_recoginition_system/static/Users/images'
     Pathlist = os.listdir(folderPath)
 
 
@@ -43,9 +43,9 @@ def main_encoding():
         print("No encodings generated. Exiting.")
         return  # Exit the function if no encodings were generated
     encodeListKnowsWithIds = [encodeKnownList, studentIds]
+    print(encodeListKnowsWithIds)
     print("Done Generating Encoding")
     file = open("D:/Projects/facial_recoginition_system/encodings/encodeFile.p", "wb")
     pickle.dump(encodeListKnowsWithIds, file)
     file.close()
 
-main_encoding()

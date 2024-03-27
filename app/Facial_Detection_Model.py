@@ -53,7 +53,7 @@ while True:
         with ThreadPoolExecutor() as executor:
             results = executor.map(process_face, faceCurFrame, encodeCurrFrame)
 
-        for id,detected, bbox, text in results:
+        for id, detected, bbox, text in results:
             if detected and bbox is not None:
                 student_details = get_student_details(id)
                 img = cvzone.cornerRect(img, bbox, rt=1)

@@ -1,0 +1,110 @@
+{% extends "admin_navbar.html" %} {% block title %}All Courses{% endblock %} {%
+block content %}
+<div class="container mt-3">
+  <h1>All Courses</h1>
+  <!-- Button trigger modal -->
+  <button
+    type="button"
+    class="btn btn-primary"
+    data-bs-toggle="modal"
+    data-bs-target="#addCourseModal"
+  >
+    Add New Course
+  </button>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="addCourseModal"
+    tabindex="-1"
+    aria-labelledby="addCourseModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addCourseModalLabel">Add New Course</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form action="/admin/add-course" method="post">
+            <div class="mb-3">
+              <label for="courseName" class="form-label">Course Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="courseName"
+                name="name"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="startDate" class="form-label">Start Date</label>
+              <input
+                type="date"
+                class="form-control"
+                id="startDate"
+                name="start_date"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="endDate" class="form-label">End Date</label>
+              <input
+                type="date"
+                class="form-control"
+                id="endDate"
+                name="end_date"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">End Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for course in courses %}
+      <tr>
+        <td>{{ course.id }}</td>
+        <td>{{ course.name }}</td>
+        <td>{{ course.start_date.strftime('%Y-%m-%d') }}</td>
+        <td>{{ course.end_date.strftime('%Y-%m-%d') }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("searchInput");
+    const tableRows = document.querySelectorAll("table tbody tr");
+
+    searchInput.addEventListener("keyup", function () {
+      const searchText = searchInput.value.toLowerCase();
+
+      tableRows.forEach((row) => {
+        const text = row.textContent.toLowerCase();
+        const textMatch = !searchText || text.includes(searchText);
+        row.style.display = textMatch ? "" : "none";
+      });
+    });
+  });
+</script>
+{% endblock %}

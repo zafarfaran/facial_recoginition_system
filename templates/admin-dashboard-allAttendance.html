@@ -1,0 +1,54 @@
+{% extends "admin_navbar.html" %} {% block title %}Active Attendance Records{%
+endblock %} {% block content %}
+<div class="container mt-3">
+  <label for="statusFilter">Filter by Status:</label>
+  <select id="statusFilter" class="form-control mb-2">
+    <option value="">All</option>
+    <option value="Present">Present</option>
+    <option value="Absent">Absent</option>
+    <!-- Add other statuses as needed -->
+  </select>
+
+  <label for="searchInput">Search:</label>
+  <input
+    type="text"
+    id="searchInput"
+    class="form-control mb-3"
+    placeholder="Search records..."
+  />
+  <h1>All Attendance Records</h1>
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">User ID</th>
+        <th scope="col">Timestamp</th>
+        <th scope="col">Status</th>
+        <th scope="col">Image</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for record in records %}
+      <tr>
+        <td>{{ record.user_id }}</td>
+        <td>{{ record.timestamp }}</td>
+        <td
+          style="background-color: {{ 'green' if record.status == 'Present' else 'red' if record.status == 'Absent' else 'none' }}; color: white;"
+        >
+          {{ record.status }}
+        </td>
+        <td>
+          {% set timestamp = record.timestamp.strftime("%Y%m%d-%H%M%S") %} {%
+          set filename = record.user_id|string + "_" + timestamp + ".jpg" %}
+          <img
+            src="{{ url_for('static', filename='temp/' + filename) }}"
+            alt="User Image"
+            style="width: 110px"
+          />
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<script src="{{ url_for('static', filename='js/search-filter.js') }}"></script>
+{% endblock %}

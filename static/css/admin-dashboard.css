@@ -192,3 +192,18 @@
     transition: opacity 0.1s ease-in 0.1s;
     opacity: 1;
   }
+  .main-panel{
+    display: flex;
+    flex-direction: row;
+    height: 100vmin;
+  }
+  .content {
+    flex: 1;
+    padding: 20px;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    flex-direction: column;
+  }

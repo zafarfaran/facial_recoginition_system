@@ -1,0 +1,73 @@
+
+.datatable {
+	width: 80%;
+	margin: auto;
+	text-align: center;
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+}
+.datatable input {
+	display: none;
+}
+.datatable h2 {
+	text-align: left;
+	margin: 0 0 10px;
+	font-size: 20px;
+	text-transform: uppercase;
+}
+.row {
+	display: flex;
+	border-bottom: 1px solid #E8E9EC;
+}
+.row.head {
+	font-weight: bold;
+	border: 2px solid #666F7B;
+	border-radius: 2px;
+	margin-bottom: 20px;
+}
+.row div {
+	flex: 1;
+	padding: 10px 0;
+}
+.row.head div:not(:first-child) {
+	padding: 0;
+}
+.row label {
+	padding: 10px;
+	display: block;
+	cursor: pointer;
+}
+.table-content {
+	display: flex;
+	flex-direction: column;
+}
+.row p {
+	margin: 0;
+	font-size: 12px;
+	padding: 4px 8px;
+	border-radius: 2px;
+	display: inline-block;
+	background-color: #EDC755;
+	margin: auto;
+	color: #fff;
+}
+.row.spy p {
+	background-color: #32B0E0;
+}
+.row.soldier p {
+	background-color: #F24F7C;
+}
+#reverse:checked ~ .content {
+	flex-direction: column-reverse;
+}
+#reverse:checked ~ .head .reverse, #type:checked ~ .head .type {
+	background-color: #8E8AC1;
+	color: #fff;
+}
+#type:checked ~ .content .spy {
+	order: 1;
+}
+#type:checked ~ .content .soldier {
+	order: 2;
+}

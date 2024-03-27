@@ -1,0 +1,54 @@
+{% extends "admin_navbar.html" %} {% block title %}All Students{% endblock %} {%
+block content %}
+
+<div class="container mt-3">
+  <h1>All Students</h1>
+  <label for="searchInput">Search:</label>
+  <input
+    type="text"
+    id="searchInput"
+    class="form-control mb-3"
+    placeholder="Search by name, email, year, or course..."
+  />
+
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Year</th>
+        <th scope="col">Course ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for student in users %}
+      <tr>
+        <td>{{ student.id }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.email }}</td>
+        <td>{{ student.year }}</td>
+        <td>{{ student.course_id }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('searchInput');
+        const tableRows = document.querySelectorAll('table tbody tr');
+    
+        searchInput.addEventListener('keyup', function() {
+            const searchText = searchInput.value.toLowerCase();
+    
+            tableRows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                const textMatch = !searchText || text.includes(searchText);
+                row.style.display = textMatch ? '' : 'none';
+            });
+        });
+    });
+    </script>
+  <script src="{{ url_for('static', filename='js/search-filter.js') }}"></script>
+</div>
+{% endblock %}

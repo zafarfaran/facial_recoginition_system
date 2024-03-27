@@ -31,7 +31,7 @@ def logout():
     # Remove the username from the session if it's there
     session.pop('username', None)
     # Redirect to login page or home page after logout
-    return redirect(url_for('auth.login'))  # Assuming you have a view function named 'login'
+    return redirect(url_for('index'))  # Assuming you have a view function named 'login'
 
 
 @auth.route('/register', methods=['GET', 'POST'])

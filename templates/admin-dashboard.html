@@ -1,55 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin-dashboard.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.5.0/octicons.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/3.0.1/css/primer.css>">
-</head>
-<body>
-    <div class="atom-panel atom-panel--left left">
-        <nav class="atom-toolbar atom-toolbar-vertical expanded">
-          <a href="#" class="btn btn-default">
-            <span class="octicon octicon-dashboard"></span>
-            <span class="title">Dashboard</span>
-          </a>
-          <a href="#" class="btn btn-default">
-            <span class="octicon octicon-beaker"></span>
-            <span class="title">Lab</span>
-          </a>
-          <a href="#" class="btn btn-default">
-            <span class="octicon octicon-terminal"></span>
-            <span class="title">Console</span>
-          </a>
-          <a href="#" class="btn btn-default">
-            <span class="octicon octicon-telescope"></span>
-            <span class="title">Sourcerer</span>
-          </a>
-          <a href="#" class="btn btn-default">
-            <span class="octicon octicon-desktop-download"></span>
-            <span class="title">Scraper</span>
-          </a>
-          <hr class="atom-toolbar-spacer">
-          <a href="#" class="btn btn-default">
-            <span class="octicon octicon-file-directory"></span>
-            <span class="title">Files</span>
-          </a>
-          <a href="#" class="btn btn-default">
-            <span class="octicon octicon-gear"></span>
-            <span class="title"> Settings</span>
-          </a>
-          <div class="atom-toolbar-toggle-button left atom-toolbar-toggle-button-visible expanded">
-            <div class="atom-toolbar-toggle-button-inner left">
-              <span class="octicon octicon-chevron-left"></span>
-            </div>
-          </div>
-        </nav>
-      </div>
+{% extends "admin_navbar.html" %}
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-      <script src="{{ url_for('static', filename='js/admin-dash.js') }}"></script>
-</body>
-</html>
+{% block title %}Dashboard - Admin{% endblock %}
+
+{% block content %}
+<div class="container mt-3">
+    <h1>Face Detection Control</h1>
+    {% if session.get('face_detection') %}
+      <a href="/stop-face-detection" class="btn btn-warning">Turn Off Face Detection</a>
+    {% else %}
+      <a href="/detect" class="btn btn-success">Turn On Face Detection</a>
+    {% endif %}
+  </div>  
+   
+{% endblock %}

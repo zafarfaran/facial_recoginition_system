@@ -1,0 +1,30 @@
+{% extends "admin_navbar.html" %}
+
+{% block title %}Dashboard - Add Student{% endblock %}
+
+{% block content %}
+<form action="/admin/addUser" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+        <label for="year">Year</label>
+        <input type="number" class="form-control" id="year" name="year" required>
+    </div>
+    <div class="form-group">
+        <label for="course_id">Course ID</label>
+        <input type="text" class="form-control" id="course_id" name="course_id"> <!-- Optional -->
+    </div>
+    <div class="form-group">
+        <label for="image">Profile Image</label>
+        <input type="file" class="form-control-file" id="image" name="image" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+   
+{% endblock %}

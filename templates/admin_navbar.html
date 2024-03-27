@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Admin Dashboard{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/admin-dashboard.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/index.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.5.0/octicons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Primer/3.0.1/css/primer.css>"
+    />
+  </head>
+  <body>
+    <div class="main-panel">
+      <div class="atom-panel atom-panel--left left">
+        <nav class="atom-toolbar atom-toolbar-vertical expanded">
+          <a href="/admin/adminDashboard" class="btn btn-default">
+            <span class="octicon octicon-dashboard"></span>
+            <span class="title">Dashboard</span>
+          </a>
+          <a href="/admin/allAttendance" class="btn btn-default">
+            <span class="octicon octicon-beaker"></span>
+            <span class="title">All Attendance</span>
+          </a>
+          <a href="/admin/activeAttendance" class="btn btn-default">
+            <span class="octicon octicon-terminal"></span>
+            <span class="title">Active Attendances</span>
+          </a>
+          <a href="/admin/allUsers" class="btn btn-default">
+            <span class="octicon octicon-telescope"></span>
+            <span class="title">All Users</span>
+          </a>
+          <a href="/admin/addUser" class="btn btn-default">
+            <span class="octicon octicon-desktop-download"></span>
+            <span class="title">Add User</span>
+          </a>
+          <hr class="atom-toolbar-spacer" />
+          <a href="/admin/stats" class="btn btn-default">
+            <span class="octicon octicon-file-directory"></span>
+            <span class="title">Statistics</span>
+          </a>
+          <a href="/admin/courses" class="btn btn-default">
+            <span class="octicon octicon-gear"></span>
+            <span class="title">Courses</span>
+          </a>
+          <a href="/auth/logout" class="btn btn-default">
+            <span class="octicon octicon-x"></span>
+            <span class="title"> Log Out</span>
+          </a>
+          <div
+            class="atom-toolbar-toggle-button left atom-toolbar-toggle-button-visible expanded"
+          >
+            <div class="atom-toolbar-toggle-button-inner left">
+              <span class="octicon octicon-chevron-left"></span>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <div class="content">
+        {% block content %}
+        <!-- Content overridden in child templates will go here -->
+        {% endblock %}
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/admin-dash.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+</html>

@@ -1,31 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Facial Recognition System</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 </head>
-
 <body>
-
-
     <div class="logo_div">
         <p>Facial Recognition System <span>AI</span></p>
     </div>
 
-
+    {% if 'username' in session %}
     <div class="button-div-main">
-        <a href="/auth/login"><button class="home_button">Admin Dashboard</button></a>
+        <!-- Direct the user to the admin dashboard if they're logged in -->
+        <a href="{{ url_for('admin.admin_dashboard') }}"><button class="home_button">Admin Dashboard</button></a>
+        <a href="{{ url_for('auth.logout') }}"><button class="home_button">Logout</button></a>
     </div>
+    {% else %}
+    <div class="button-div-main">
+        <!-- Show login and register options if the user is not logged in -->
+        <a href="{{ url_for('auth.login') }}"><button class="home_button">Login</button></a>
+        <a href="{{ url_for('auth.register') }}"><button class="home_button">Register</button></a>
+    </div>
+    {% endif %}
 
     <div class="text_animation_block">
         <p id="text-display"></p>
     </div>
 
-    <script src=""></script>
     <script src="{{ url_for('static', filename='js/typing_effect.js') }}"></script>
 </body>
-
 </html>

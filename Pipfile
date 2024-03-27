@@ -16,6 +16,9 @@ bcrypt = "*"
 flask-sqlalchemy = "*"
 pymysql = "*"
 sqlalchemy = "*"
+flask-bcrypt = "*"
+flask-session = "*"
+flask-login = "*"
 
 [dev-packages]
 
